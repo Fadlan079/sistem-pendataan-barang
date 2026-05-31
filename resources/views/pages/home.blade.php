@@ -6,26 +6,55 @@
 
 <div class="bg-bg text-text min-h-screen flex flex-col justify-between font-sans selection:bg-primary-accent/25 selection:text-primary">
 
-    <header class="bg-surface border-b border-border/40 sticky top-0 z-50 shadow-sm">
+    <header x-data="{ open: false }" class="bg-surface border-b border-border/40 sticky top-0 z-50 shadow-sm">
         <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
+            <a href="/" class="flex items-center gap-3 hover:opacity-90 transition-opacity">
                 <img src="{{ asset('screen.png') }}" class="w-8 h-8 rounded shadow-sm object-cover" alt="Logo">
                 <span class="text-lg font-bold tracking-tight text-primary">Sistem Pendataan Barang</span>
-            </div>
+            </a>
 
-            <nav class="flex items-center gap-4">
+            <nav class="hidden md:flex items-center gap-4">
                 @if (Route::has('login'))
                     @auth
                         <div class="flex items-center gap-3">
-                            <span class="text-xs text-muted hidden sm:inline-block">Halo, <strong class="text-text">{{ Auth::user()->name }}</strong></span>
-                            <a href="{{ route('dashboard') }}" class="text-sm font-semibold text-secondary hover:text-secondary-light transition-colors">Dashboard</a>
+                            <a href="{{ route(auth()->user()->role . '.dashboard') }}" class="text-sm bg-primary text-white hover:bg-primary/90 transition-colors p-2 rounded font-semibold text-secondary hover:text-secondary-light">Dashboard</a>
                             <form method="POST" action="{{ route('logout') }}" class="inline">
                                 @csrf
-                                <button type="submit" class="text-sm font-semibold text-danger hover:text-danger/80 transition-colors cursor-pointer">Keluar</button>
+                                <button type="submit" class="text-sm font-semibold text-danger bg-danger text-white hover:bg-danger/80 transition-colors cursor-pointer p-2 rounded shadow-md">Keluar</button>
                             </form>
                         </div>
                     @else
                         <a href="{{ route('login') }}" class="text-sm font-semibold bg-primary text-white hover:bg-primary/90 transition-colors p-2 rounded">Masuk</a>
+                    @endauth
+                @endif
+            </nav>
+
+            <div class="flex items-center md:hidden">
+                <button @click="open = !open" class="text-primary hover:text-secondary focus:outline-none transition-colors cursor-pointer" aria-label="Toggle menu">
+                    <i class="fa-solid" :class="open ? 'fa-xmark text-xl' : 'fa-bars text-xl'"></i>
+                </button>
+            </div>
+        </div>
+
+        <div x-show="open"
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             class="md:hidden border-t border-border/20 bg-surface px-6 py-4 shadow-inner"
+             style="display: none;">
+            <nav class="flex flex-col gap-3">
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ route(auth()->user()->role . '.dashboard') }}" class="block text-center text-sm bg-primary text-white hover:bg-primary/90 transition-colors p-2.5 rounded font-semibold text-secondary hover:text-secondary-light">Dashboard</a>
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <button type="submit" class="w-full text-center text-sm font-semibold text-danger bg-danger text-white hover:bg-danger/80 transition-colors cursor-pointer p-2.5 rounded shadow-md">Keluar</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="block text-center text-sm font-semibold bg-primary text-white hover:bg-primary/90 transition-colors p-2.5 rounded">Masuk</a>
                     @endauth
                 @endif
             </nav>
@@ -50,7 +79,7 @@
 
                 <div class="flex flex-col sm:flex-row gap-3 mt-2">
                     @auth
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center justify-center bg-secondary hover:bg-secondary-light text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md shadow-secondary/10 gap-2">
+                        <a href="{{ route(auth()->user()->role . '.dashboard') }}" class="inline-flex items-center justify-center bg-secondary hover:bg-secondary-light text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md shadow-secondary/10 gap-2">
                             <i class="fa-solid fa-table-columns"></i>
                             Masuk ke Dashboard
                         </a>
@@ -61,7 +90,7 @@
                         </a>
                     @endauth
 
-                    <a href="{{ route('product.index') }}" class="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-text border border-border/80 font-semibold px-6 py-3 rounded-xl transition-all shadow-sm gap-2">
+                    <a href="{{ route(auth()->user()->role . '.product.index') }}" class="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-text border border-border/80 font-semibold px-6 py-3 rounded-xl transition-all shadow-sm gap-2">
                         <i class="fa-solid fa-list"></i>
                         Lihat Data Barang
                     </a>

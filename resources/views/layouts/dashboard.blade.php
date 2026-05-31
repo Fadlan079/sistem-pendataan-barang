@@ -21,58 +21,56 @@
             <aside class="w-64 bg-primary h-screen flex flex-col shadow-2xl shrink-0 transition-transform transform -translate-x-full md:translate-x-0 absolute md:relative top-0 left-0 z-40">
 
                 <div class="h-20 flex items-center px-6 border-b border-white/10 shrink-0">
-                    <div class="w-9 h-9 rounded flex items-center justify-center text-primary font-black text-lg mr-3 shadow-sm">
+                    <div class="w-9 h-9 bg-white rounded flex items-center justify-center text-primary font-black text-lg mr-3 shadow-sm">
                         <img src="{{ asset('screen.png') }}" alt="Logo">
                     </div>
                     <div class="flex flex-col">
                         <span class="text-white font-bold text-sm tracking-wide leading-tight">Sistem Pendataan</span>
-                        <span class="text-secondary text-xs font-semibold">Barang</span>
+                        <span class="text-secondary-light text-xs font-semibold">Barang</span>
                     </div>
                 </div>
 
                 <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
 
-                    <a href="/dashboard"
-                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
-                    {{ request()->is('*dashboard') ? 'bg-white/10 text-secondary font-bold border-secondary' : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary' }}">
+                    <a href="{{ route(auth()->user()->role . '.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
+                    {{ request()->routeIs(auth()->user()->role . '.dashboard') ? 'bg-white/10 text-secondary-light font-bold border-secondary-light' : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary-light' }}">
 
                         <i class="fa-solid fa-house w-5 text-center text-lg"></i>
                         <span class="text-sm">Home</span>
                     </a>
 
-                    <a href="{{ route('product.index') }}"
+
+                    <a href="{{ route(auth()->user()->role . '.product.index') }}"
                     class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
-                    {{ request()->routeIs('product.*') ? 'bg-white/10 text-secondary font-bold border-secondary' : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary' }}">
+                    {{ request()->routeIs(auth()->user()->role . '.product.*')
+                            ? 'bg-white/10 text-secondary-light font-bold border-secondary-light'
+                            : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary-light' }}">
 
                         <i class="fa-solid fa-box w-5 text-center text-lg"></i>
                         <span class="text-sm">Kelola Produk</span>
                     </a>
 
-                    <a href="{{ route('transaction.index') }}"
+                    <a href="{{ route(auth()->user()->role . '.category.index') }}"
                     class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
-                    {{ request()->routeIs('transaction.*') ? 'bg-white/10 text-secondary font-bold border-secondary' : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary' }}">
-
-                        <i class="fa-solid fa-cash-register w-5 text-center text-lg"></i>
-                        <span class="text-sm">Kelola Transaksi</span>
-                    </a>
-
-                    <a href="{{ route('kategori.index') }}"
-                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
-                    {{ request()->routeIs('kategori.*') ? 'bg-white/10 text-secondary font-bold border-secondary' : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary' }}">
+                    {{ request()->routeIs('admin.category.*')
+                            ? 'bg-white/10 text-secondary-light font-bold border-secondary-light'
+                            : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary-light' }}">
 
                         <i class="fa-solid fa-layer-group w-5 text-center text-lg"></i>
                         <span class="text-sm">Kelola Kategori</span>
                     </a>
 
-                    @if(auth()->user()->role == 'admin')
+                    @if(auth()->user()->role === 'admin')
 
-                        <a href="{{ route('user.index') }}"
-                        class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
-                        {{ request()->routeIs('user.*') ? 'bg-white/10 text-secondary font-bold border-secondary' : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary' }}">
+                    <a href="{{ url('/admin/user') }}"
+                    class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
+                    {{ request()->is('admin/user*')
+                            ? 'bg-white/10 text-secondary-light font-bold border-secondary-light'
+                            : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary-light' }}">
 
-                            <i class="fa-solid fa-users-gear w-5 text-center text-lg"></i>
-                            <span class="text-sm">Kelola Petugas</span>
-                        </a>
+                        <i class="fa-solid fa-users-gear w-5 text-center text-lg"></i>
+                        <span class="text-sm">Kelola Pegawai</span>
+                    </a>
 
                     @endif
 
@@ -85,7 +83,7 @@
                         </div>
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-bold text-white truncate">{{ Auth::user()->name ?? 'Nama Petugas' }}</p>
-                            <p class="text-xs text-secondary truncate">{{ Auth::user()->role ?? 'Role' }}</p>
+                            <p class="text-xs text-secondary-light truncate">{{ Auth::user()->role ?? 'Role' }}</p>
                         </div>
                     </div>
 
