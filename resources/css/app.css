@@ -1,1 +1,96 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+:root {
+  --color-bg: #f9f9ff;
+  --color-surface: #ffffff;
+
+  --color-surface-dim: #d7dae4;
+  --color-surface-variant: #dfe2ec;
+
+  --color-border: #c5c6ce;
+
+  --color-primary: #192840;
+  --color-primary-light: #394761;
+  --color-primary-accent: #437DE3;
+
+  --color-on-primary: #ffffff;
+
+  --color-secondary: #0f5abf;
+  --color-secondary-light: #5f96fe;
+
+  --color-on-secondary: #ffffff;
+
+  --color-text: #181c23;
+  --color-text-variant: #44474d;
+  --color-muted: #75777e;
+
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-danger: #dc2626;
+  --color-info: #437DE3;
+
+  --color-card: #ffffff;
+  --color-card-hover: #f0f3fd;
+
+  --color-sidebar: #192840;
+  --color-sidebar-text: #eef0fb;
+
+  --color-heading: #0c1c33;
+  --color-subtle: #64748b;
+}
+
+@theme {
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-accent: var(--color-primary-accent);
+
+  --color-secondary: var(--color-secondary);
+  --color-secondary-light: var(--color-secondary-light);
+
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-info: var(--color-info);
+
+  --color-border: var(--color-border);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-primary) 85%, white),
+    var(--color-primary)
+  );
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-primary-accent) 25%, transparent);
+  color: var(--color-primary);
+}
