@@ -1,58 +1,209 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Sistem Pendataan Barang
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem berbasis web untuk mengelola inventaris barang, kategori produk, dan data pengguna secara terstruktur. Dibangun menggunakan **Laravel 12**, **Tailwind CSS v4**, dan **Alpine.js** untuk tampilan yang modern dan responsif.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📖 Latar Belakang
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Pengelolaan data barang atau inventaris secara manual (menggunakan buku catatan atau spreadsheet) sering kali menimbulkan berbagai masalah, seperti:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Data tidak sinkron atau mudah hilang
+- Sulitnya melakukan pencarian data barang secara cepat
+- Tidak ada pemisahan hak akses antar pengguna
+- Proses pelaporan yang lambat dan tidak akurat
 
-## Learning Laravel
+Sistem Pendataan Barang hadir sebagai solusi digital yang sederhana namun terstruktur, dirancang untuk lingkungan sekolah, UMKM, atau organisasi kecil yang membutuhkan sistem inventaris ringan berbasis web, dapat diakses dari mana saja, serta mendukung beberapa level pengguna.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Fitur Utama
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+| Fitur | Admin | Staff |
+|---|:---:|:---:|
+| Dashboard Statistik & Grafik | ✅ | ✅ |
+| Manajemen Produk (CRUD penuh) | ✅ | ✅ |
+| Manajemen Kategori (CRUD penuh) | ✅ | ✅ |
+| Manajemen Pengguna & Hak Akses | ✅ | ❌ |
+| Pencarian & Filter Data | ✅ | ✅ |
+| Paginasi Data | ✅ | ✅ |
+| Autentikasi (Login/Logout) | ✅ | ✅ |
+| Tampilan Responsif (Mobile-Friendly) | ✅ | ✅ |
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## 🛠️ Teknologi yang Digunakan
 
+- **PHP 8.2+** & **Laravel 12**
+- **MySQL** (Database)
+- **Tailwind CSS v4** (Styling)
+- **Alpine.js** (Interaktivitas Frontend)
+- **Vite** (Asset Bundler)
+- **Font Awesome 6** (Ikon)
+
+---
+
+## ✅ Manfaat Sistem
+
+1. **Efisiensi Pengelolaan Data** — Data barang, kategori, dan pengguna dikelola dalam satu platform terintegrasi.
+2. **Pencarian Cepat** — Fitur pencarian dan filter memudahkan menemukan data produk tanpa perlu membuka satu per satu.
+3. **Kontrol Hak Akses** — Pemisahan peran Admin dan Staff memastikan keamanan data dan mencegah akses tidak sah.
+4. **Notifikasi Stok Menipis** — Sistem secara otomatis menandai produk dengan stok di bawah 5 unit dengan indikator warna merah.
+5. **Tampilan Modern & Responsif** — Dapat diakses dengan nyaman dari komputer maupun perangkat mobile.
+6. **Mudah Dikembangkan** — Dibangun di atas framework Laravel yang terstruktur (MVC) sehingga mudah untuk ditambah fitur baru.
+
+---
+
+## ⚠️ Kekurangan / Keterbatasan
+
+1. **Belum Ada Fitur Ekspor Data** — Belum tersedia opsi untuk mengekspor data ke format Excel atau PDF.
+2. **Tidak Ada Notifikasi Real-time** — Peringatan stok menipis hanya tampil secara visual di tabel, belum ada notifikasi push atau email otomatis.
+3. **Belum Ada Fitur Upload Gambar Produk** — Produk saat ini tidak mendukung lampiran foto.
+4. **Manajemen Stok Terbatas** — Belum ada fitur riwayat mutasi stok masuk/keluar (transaksi inventaris).
+5. **Satu Server Database** — Belum dikonfigurasi untuk replikasi atau backup otomatis database.
+
+---
+
+## 🚀 Cara Setup di Komputer
+
+### Persyaratan Sistem
+
+Pastikan perangkat Anda telah terinstal:
+
+- PHP >= 8.2
+- Composer
+- Node.js >= 18 & npm
+- MySQL / MariaDB
+- Git
+
+### Langkah Instalasi
+
+**1. Clone repositori**
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/Fadlan079/sistem-pendataan-barang.git
+cd sistem-pendataan-barang
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+**2. Install dependensi PHP**
+```bash
+composer install
+```
 
-## Contributing
+**3. Install dependensi Node.js**
+```bash
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**4. Salin file konfigurasi environment**
+```bash
+cp .env.example .env
+```
 
-## Code of Conduct
+**5. Generate application key**
+```bash
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**6. Konfigurasi database**
 
-## Security Vulnerabilities
+Buka file `.env` dan sesuaikan konfigurasi berikut:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sistem_pendataan_barang
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Buat database baru di MySQL dengan nama yang sesuai (contoh: `sistem_pendataan_barang`).
 
-## License
+**7. Jalankan migrasi dan seeder**
+```bash
+php artisan migrate --seed
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Perintah ini akan membuat semua tabel dan mengisi data awal termasuk akun pengguna default:
+
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | `admin@test.com` | `password` |
+| Staff | `staff@test.com` | `password` |
+
+**8. Jalankan server pengembangan**
+
+Buka **dua terminal** secara bersamaan:
+
+Terminal 1 — Laravel dev server:
+```bash
+php artisan serve
+```
+
+Terminal 2 — Vite asset bundler:
+```bash
+npm run dev
+```
+
+**9. Akses aplikasi**
+
+Buka browser dan kunjungi: **http://127.0.0.1:8000**
+
+---
+
+## 📋 Cara Penggunaan
+
+### Sebagai Admin
+
+1. Login dengan akun admin (`admin@test.com` / `password`)
+2. Anda akan diarahkan ke **Dashboard Admin** yang menampilkan metrik statistik dan grafik
+3. Gunakan menu sidebar untuk navigasi:
+   - **Kelola Produk** — Tambah, lihat detail, edit, dan hapus produk
+   - **Kelola Kategori** — Tambah, lihat detail, edit, dan hapus kategori
+   - **Kelola Pegawai** — Daftarkan pengguna baru, atur role, edit, dan hapus akun
+
+### Sebagai Staff
+
+1. Login dengan akun staff (`staff@test.com` / `password`)
+2. Anda akan diarahkan ke **Dashboard Staff** yang menampilkan ringkasan operasional
+3. Gunakan menu sidebar untuk navigasi:
+   - **Kelola Produk** — Kelola data produk inventaris
+   - **Kelola Kategori** — Kelola klasifikasi kategori barang
+   - Menu **Kelola Pegawai** tidak tersedia untuk role Staff
+
+### Fitur Pencarian & Filter
+
+- Di halaman **Kelola Produk**, gunakan kolom pencarian untuk mencari berdasarkan nama atau kode produk
+- Gunakan dropdown **Kategori** untuk memfilter produk berdasarkan kategori tertentu
+- Klik tombol reset (ikon ↺) untuk menghapus filter aktif
+
+---
+
+## 📁 Struktur Proyek (Singkat)
+
+```
+├── app/
+│   ├── Http/Controllers/     # Controller CRUD (Product, Category, User, dll.)
+│   ├── Models/               # Model Eloquent (Product, Category, User)
+│   └── Http/Middleware/      # Middleware autentikasi & role
+├── database/
+│   ├── migrations/           # Skema tabel database
+│   └── seeders/              # Data awal (kategori, produk, user)
+├── resources/
+│   ├── views/
+│   │   ├── admin/            # Halaman khusus Admin
+│   │   ├── staff/            # Halaman khusus Staff
+│   │   ├── layouts/          # Template layout utama
+│   │   └── pages/            # Halaman publik (landing page)
+│   └── css/app.css           # Konfigurasi warna & tema Tailwind
+└── routes/web.php            # Definisi semua rute aplikasi
+```
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dibuat untuk keperluan pembelajaran di **SMKTI Airlangga** — Kelas XI PPLG, Semester 2.
+
+---
+
+*Dibuat dengan ❤️ menggunakan Laravel & Tailwind CSS*
