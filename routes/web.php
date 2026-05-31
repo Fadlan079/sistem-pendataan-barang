@@ -5,6 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
@@ -15,9 +16,7 @@ Route::middleware(['auth', 'role:admin'])
     ->name('admin.')
     ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::resource('product', ProductController::class);
         Route::resource('category', CategoryController::class);
@@ -30,15 +29,11 @@ Route::middleware(['auth', 'role:staff'])
     ->name('staff.')
     ->group(function () {
 
-        Route::get('/dashboard', function () {
-            return view('staff.dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::resource('product', ProductController::class)
-            ->only(['index', 'show']);
+        Route::resource('product', ProductController::class);
 
-        Route::resource('category', CategoryController::class)
-        ->only(['index', 'show']);
+        Route::resource('category', CategoryController::class);
     });
 
 Route::middleware(['auth'])->group(function () {

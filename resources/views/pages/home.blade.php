@@ -90,7 +90,7 @@
                         </a>
                     @endauth
 
-                    <a href="{{ route(auth()->user()->role . '.product.index') }}" class="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-text border border-border/80 font-semibold px-6 py-3 rounded-xl transition-all shadow-sm gap-2">
+                    <a href="{{ route('login') }}" class="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-text border border-border/80 font-semibold px-6 py-3 rounded-xl transition-all shadow-sm gap-2">
                         <i class="fa-solid fa-list"></i>
                         Lihat Data Barang
                     </a>

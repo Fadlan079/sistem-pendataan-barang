@@ -52,7 +52,7 @@
 
                     <a href="{{ route(auth()->user()->role . '.category.index') }}"
                     class="flex items-center gap-3 px-4 py-3 rounded-lg transition border-l-4
-                    {{ request()->routeIs('admin.category.*')
+                    {{ request()->routeIs(auth()->user()->role . '.category.*')
                             ? 'bg-white/10 text-secondary-light font-bold border-secondary-light'
                             : 'text-gray-400 font-medium border-transparent hover:bg-white/10 hover:text-secondary-light' }}">
 
